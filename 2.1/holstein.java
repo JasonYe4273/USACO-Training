@@ -34,6 +34,7 @@ public class holstein
 		}
 		in.close();
 		
+		@SuppressWarnings("unchecked")
 		ArrayList<Integer>[] sizes = new ArrayList[g];
 		for (int i = 0; i < g; i++) sizes[i] = new ArrayList<Integer>();
 		for (int i = 1; i < Math.pow(2, g); i++)
