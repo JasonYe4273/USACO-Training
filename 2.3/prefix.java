@@ -17,7 +17,6 @@ public class prefix
 {
 	public static void main(String[] args) throws IOException
 	{
-		//long start = System.currentTimeMillis();
 		BufferedReader in = new BufferedReader(new FileReader("prefix.in"));
 		PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("prefix.out")));
 		
@@ -46,54 +45,42 @@ public class prefix
 			}
 		}
 		
-		String s = "";
+		StringBuilder sb = new StringBuilder();
 		line = in.readLine();
 		while (line != null)
 		{
-			s += line.trim();
+			// DO NOT USE += (it's slow enough to cause your time to run out)
+			sb.append(line);
 			line = in.readLine();
 		}
+		String s = sb.toString();
 		in.close();
 		
-		out.println(longestPrefix(s, primitives, max));
-		out.close();
-		//System.out.println(System.currentTimeMillis() - start);
-	}
-	
-	public static int longestPrefix(String s, ArrayList<String>[] primitives, int maxPrimitive)
-	{
-		int l = s.length();
-		if (l == 0) return 0;
-		int half = l / 2;
-		if (half <= maxPrimitive)
+		int len = s.length();
+		boolean[] reachable = new boolean[len + 1];
+		reachable[0] = true;
+		for (int i = 0; i < len; i++)
 		{
-			int max = 0;
-			if (l <= maxPrimitive)
+			if (!reachable[i]) continue;
+			max = Math.min(len - i, max);
+			for (int l = 1; l <= max; l++)
 			{
+				String toMatch = s.substring(i, i + l);
 				for (String p : primitives[l])
 				{
-					if (s.equals(p)) return l;
-				}
-			}
-			for (int i = Math.min(maxPrimitive, l - 1); i > 0; i--)
-			{
-				String sis = s.substring(0, i);
-				String sie = s.substring(i);
-				for (String p : primitives[i])
-				{
-					if (sis.equals(p))
+					if (toMatch.equals(p))
 					{
-						int length = i + longestPrefix(sie, primitives, maxPrimitive);
-						if (length == l) return l;
-						if (length > max) max = length;
+						reachable[i + l] = true;
+						break;
 					}
 				}
 			}
-			return max;
 		}
 		
-		int firstHalfPrefix = longestPrefix(s.substring(0, half), primitives, maxPrimitive);
-		if (firstHalfPrefix <= half - maxPrimitive) return firstHalfPrefix;
-		return firstHalfPrefix + longestPrefix(s.substring(firstHalfPrefix), primitives, maxPrimitive);
+		int largestReachable = len;
+		while (!reachable[largestReachable--]);
+		
+		out.println(largestReachable + 1);
+		out.close();
 	}
 }
