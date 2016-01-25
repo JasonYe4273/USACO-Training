@@ -28,10 +28,7 @@ public class buylow
 		while (line != null)
 		{
 			StringTokenizer st = new StringTokenizer(line);
-			while (st.hasMoreTokens())
-			{
-				prices[place++] = Integer.parseInt(st.nextToken());
-			}
+			while (st.hasMoreTokens()) prices[place++] = Integer.parseInt(st.nextToken());
 			line = in.readLine();
 		}
 		in.close();
