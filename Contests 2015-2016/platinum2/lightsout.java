@@ -74,12 +74,8 @@ public class lightsout
 			}
 		}
 		
-		String cwCcwStr = "";
-		for (int i = 0; i < turningPoint; i++) cwCcwStr += right[i] ? "R" : "L";
 		String ccwCcwStr = "";
 		for (int i = turningPoint - 1; i >= 0; i--) ccwCcwStr += right[i] ? "R" : "L";
-		String ccwCwStr = "";
-		for (int i = turningPoint; i < n; i++) ccwCwStr += right[i] ? "R" : "L";
 		String cwCwStr = "";
 		for (int i = n - 1; i >= turningPoint; i--) cwCwStr += right[i] ? "R" : "L";
 		
