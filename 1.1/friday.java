@@ -20,17 +20,21 @@ class friday
         PrintWriter out = new PrintWriter( new BufferedWriter( new FileWriter( "friday.out" ) ) );
         StringTokenizer st = new StringTokenizer( in.readLine() );
         
+        // Read in input
         int n = Integer.parseInt( st.nextToken() );
         in.close();
         
+        // Start at 1/13/1900 (Saturday)
         int year = 1900;
         int day = 6;
         int num13s[] = { 0, 0, 0, 0, 0, 0, 0 };
         for( int i = 0; i < n; i++ )
         {
+        	// Go month by month for each year, calculating the day of the next 13th each time
             num13s[ day ]++;
             day = ( day + 31 ) % 7;
             
+            // February is affected by leap years
             num13s[ day ]++;
             if( ( year % 400 == 0 ) || ( year % 100 != 0 && year % 4 == 0 ) )
             {

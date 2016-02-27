@@ -20,6 +20,7 @@ class gift1
         BufferedReader in = new BufferedReader( new FileReader( "gift1.in" ) );
         PrintWriter out = new PrintWriter( new BufferedWriter( new FileWriter( "gift1.out" ) ) );
         
+        // Read in input
         int np = Integer.parseInt( in.readLine() );
         
         int[] profit = new int[ np ];
@@ -40,6 +41,7 @@ class gift1
             temp2 = Integer.parseInt( st.nextToken() );
             if( temp2 != 0 )
             {
+            	// Calculate the amount actually given, subtract it from the giver's profit, and distribute it to the receivers' profits
                 temp = temp / temp2;
                 profit[ index ] -= ( temp * temp2 );
                 for( int j = 0; j < temp2; j++ )

@@ -19,6 +19,7 @@ class milk2
         BufferedReader in = new BufferedReader( new FileReader( "milk2.in" ) );
         PrintWriter out = new PrintWriter( new BufferedWriter( new FileWriter( "milk2.out" ) ) );
         
+        // Read in input
         int n = Integer.parseInt( in.readLine() );
         
         int[] start = new int[ n ];
@@ -31,6 +32,7 @@ class milk2
         }
         in.close();
         
+        // Sort by start times
         int place;
         boolean notDone;
         
@@ -59,6 +61,7 @@ class milk2
             }
         }
         
+        // Keep track of the times spent milking or idle, initializeing with the first
         ArrayList<Integer> timesMilking = new ArrayList<Integer>();
         ArrayList<Integer> timesIdle = new ArrayList<Integer>();
         timesMilking.add( finish[ 0 ] - start[ 0 ] );
@@ -66,20 +69,25 @@ class milk2
         {
             if( start[ i ] <= finish[ i - 1 ] && finish[ i ] > finish[ i - 1 ] )
             {
+            	// If the the current chunk of time overlaps with the previous one, expand the time milking just added
                 timesMilking.set( ( timesMilking.size() - 1 ), 
                             timesMilking.get( timesMilking.size() - 1 ) + finish[ i ] - finish[ i - 1 ] );
             }
             else if( start[ i ] <= finish[ i - 1 ] && finish[ i ] <= finish[ i - 1 ] )
             {
+            	// If the previous chunk of time completely contains the current one, 
+            	// change the finish time of the current chunk of time to keep track of the ending of the larger continuous chunk it's part of
                 finish[ i ] = finish[ i - 1 ];
             }
             else
             {
+            	// If they are disjoint, add a new chunk
                 timesIdle.add( start[ i ] - finish[ i - 1 ] );
                 timesMilking.add( finish[ i ] - start[ i ] );
             }
         }
         
+        // find the longest chunks of time
         int longestTimeMilking = 0;
         for( int i = 0; i < timesMilking.size(); i++ )
         {
@@ -100,6 +108,5 @@ class milk2
         
         out.println( longestTimeMilking + " " + longestTimeIdle );
         out.close();
-        System.exit( 0 );
     }
 }

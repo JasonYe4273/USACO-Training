@@ -20,10 +20,12 @@ class dualpal
         PrintWriter out = new PrintWriter( new BufferedWriter( new FileWriter( "dualpal.out" ) ) );
         StringTokenizer st = new StringTokenizer( in.readLine() );
         
+        // Read in input
         int n = Integer.parseInt( st.nextToken() );
         int s = Integer.parseInt( st.nextToken() );
         in.close();
         
+        // Loop through while not enough have been found
         int numDualPals = 0;
         int num = s + 1;
         int numPals = 0;
@@ -34,6 +36,7 @@ class dualpal
             
             for( int b = 2; b <= 10; b++ )
             {
+            	// Convert the number to digits in base b
                 ArrayList<Integer> digits = new ArrayList<Integer>();
                 temp = num;
                 while( temp > 0 )
@@ -42,6 +45,7 @@ class dualpal
                     temp = temp / b;
                 }
                 
+                // Check that the number is a palindrome
                 boolean isPal = true;
                 for( int i = 0; i < digits.size(); i++ )
                 {
@@ -67,6 +71,5 @@ class dualpal
         }
         
         out.close();
-        System.exit( 0 );
     }
 }

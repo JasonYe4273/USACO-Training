@@ -18,6 +18,7 @@ class namenum
         BufferedReader dict = new BufferedReader( new FileReader( "dict.txt" ) );
         PrintWriter out = new PrintWriter( new BufferedWriter( new FileWriter( "namenum.out" ) ) );
         
+        // Read in the sequence of the numbers
         char[] num = in.readLine().toCharArray();
         in.close();
         
@@ -26,6 +27,7 @@ class namenum
         String temp = "a";
         do
         {
+        	// Read in the next word in the dictionary
             temp = dict.readLine();
             if( temp != null )
             {
@@ -35,6 +37,7 @@ class namenum
                     Checker c = new Checker();
                     boolean works = true;
                     
+                    // Check each character
                     for( int i = 0; i < name.length; i++ )
                     {
                         if( !c.check( num[ i ], name[ i ] ) )
@@ -43,6 +46,7 @@ class namenum
                         }
                     }
                     
+                    // Print it out if it works
                     if( works )
                     {
                         atLeastOne = true;
@@ -54,13 +58,13 @@ class namenum
         while( temp != null );
         dict.close();
         
+        // Print out NONE if there isn't at least one
         if( !atLeastOne )
         {
             out.println( "NONE" );
         }
         
         out.close();
-        System.exit( 0 );
     }
 }
 

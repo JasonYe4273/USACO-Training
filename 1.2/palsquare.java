@@ -18,15 +18,18 @@ class palsquare
         BufferedReader in = new BufferedReader( new FileReader( "palsquare.in" ) );
         PrintWriter out = new PrintWriter( new BufferedWriter( new FileWriter( "palsquare.out" ) ) );
         
+        // Read in the base
         int b = Integer.parseInt( in.readLine() );
         Converter c = new Converter();
         in.close();
         
+        // Ignore this; it's unneeded (just use single variable inside for loop)
         boolean[] isPal = new boolean[ 301 ];
         for( int i = 1; i <= 300; i++ )
         {
             isPal[ i ] = true;
             
+            // Converts the square to digits in base b (reversed)
             int square = i * i;
             ArrayList<Integer> digits = new ArrayList<Integer>();
             while( square > 0 )
@@ -35,6 +38,7 @@ class palsquare
                 square = square / b;
             }
             
+            // Checks that the digits form a palindrome
             for( int j = 0; j < digits.size(); j++ )
             {
                 if( digits.get( j ) != digits.get( digits.size() - j - 1 ) )
@@ -45,6 +49,7 @@ class palsquare
             
             if( isPal[ i ] )
             {
+            	// Convert the not-squared number to base b digits (reversed)
                 int temp = i;
                 ArrayList<Integer> digits2 = new ArrayList<Integer>();
                 while( temp > 0 )
@@ -53,6 +58,7 @@ class palsquare
                     temp = temp / b;
                 }
                 
+                // Print out the base b digits of the not-squared number (using the converter if necessary)
                 for( int j = 0; j < digits2.size(); j++ )
                 {
                     if(  digits2.get( digits2.size() - j - 1 ) < 10 )
@@ -66,6 +72,7 @@ class palsquare
                 }
                 out.print( " " );
                 
+                // Print out the base b digits of the squared number (using the converter if necessary)
                 for( int j = 0; j < digits.size(); j++ )
                 {
                     if(  digits.get( digits.size() - j - 1 ) < 10 )
@@ -81,7 +88,6 @@ class palsquare
             }
         }
         out.close();
-        System.exit( 0 );
     }
 }
 

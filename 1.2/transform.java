@@ -17,6 +17,7 @@ class transform
         BufferedReader in = new BufferedReader( new FileReader( "transform.in" ) );
         PrintWriter out = new PrintWriter( new BufferedWriter( new FileWriter( "transform.out" ) ) );
         
+        // Read in the characters
         int n = Integer.parseInt( in.readLine() );
         char[][] before = new char[ n ][ n ];
         for( int i = 0; i < n; i++ )
@@ -31,6 +32,7 @@ class transform
         }
         in.close();
         
+        // Simply check all transformations in order
         if( check1( n, before, after ) )
         {
             out.println( "1" );
@@ -61,9 +63,9 @@ class transform
         }
         
         out.close();
-        System.exit( 0 );
     }
     
+    // (i, j) goes to (j, n - i - 1)
     public static boolean check1( int n, char[][] before, char[][] after )
     {
         boolean is1 = true;
@@ -81,6 +83,7 @@ class transform
         return is1;
     }
     
+    // (i, j) goes to (n - i - 1, n - j - 1)
     public static boolean check2( int n, char[][] before, char[][] after )
     {
         boolean is2 = true;
@@ -98,6 +101,7 @@ class transform
         return is2;
     }
     
+    // (i, j) goes to (n - j - 1, i)
     public static boolean check3( int n, char[][] before, char[][] after )
     {
         boolean is3 = true;
@@ -115,6 +119,7 @@ class transform
         return is3;
     }
     
+    // Nothing changes
     public static boolean check6( int n, char[][] before, char[][] after )
     {
         boolean is6 = true;
@@ -132,6 +137,7 @@ class transform
         return is6;
     }
     
+    // (i, j) goes to (i, n - j - 1)
     public static char[][] reflect( int n, char[][] input )
     {
         char[][] temp = new char[ n ][ n ];
@@ -147,12 +153,14 @@ class transform
         return temp;
     }
     
+    // Check that the reflection is equal
     public static boolean check4( int n, char[][] before, char[][] after )
     {
         boolean is4 = check6( n, reflect( n, before ), after );
         return is4;
     }
     
+    // Check that 1, 2, or 3 is satisfied after reflecting before
     public static boolean check5( int n, char[][] before, char[][] after )
     {
         char[][] temp = reflect( n, before );

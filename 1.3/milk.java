@@ -19,6 +19,7 @@ class milk
         PrintWriter out = new PrintWriter( new BufferedWriter( new FileWriter( "milk.out" ) ) );
         StringTokenizer st = new StringTokenizer( in.readLine() );
         
+        // Read in input
         int milkNeeded = Integer.parseInt( st.nextToken() );
         int numFarmers = Integer.parseInt( st.nextToken() );
         
@@ -32,6 +33,7 @@ class milk
         }
         in.close();
         
+        // Sort the prices and amounts based on price
         int place;
         boolean notDone;
         
@@ -60,6 +62,7 @@ class milk
             }
         }
         
+        // Greedily take buy all milk available from the lowest prices until enough is bought
         int milk = 0;
         int cost = 0;
         place = 0;
