@@ -22,7 +22,7 @@ public class balancing
 		PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("balancing.out")));
 		
 		int n = Integer.parseInt(in.readLine());
-		Cow[] cows = new Cow[n];
+		//Cow[] cows = new Cow[n];
 		Cow[] cowX = new Cow[n];
 		Cow[] cowY = new Cow[n];
 		for (int i = 0; i < n; i++)
