@@ -22,6 +22,7 @@
 	<classpathentry kind="src" path="5.2"/>
 	<classpathentry kind="src" path="5.3"/>
 	<classpathentry kind="src" path="5.4"/>
+	<classpathentry kind="src" path="5.5"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
 	<classpathentry kind="src" path="Contests 2014-2015"/>
 	<classpathentry kind="src" path="Contests 2015-2016"/>
