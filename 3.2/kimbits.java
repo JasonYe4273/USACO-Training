@@ -25,7 +25,7 @@ public class kimbits
 		long i = Long.parseLong(st.nextToken());
 		in.close();
 		
-		// num[# digits][max # ones]
+		// num[max # ones][# digits]
 		int[][] num = new int[n + 1][l + 1];
 		for (int k = 0; k <= l; k++) num[0][k] = 1;
 		for (int j = 1; j <= n; j++)
@@ -41,16 +41,18 @@ public class kimbits
 		out.close();
 	}
 	
-	public static String getString(int n, int l, long i, int[][] num)
+	// 0:00 0:01 0:10 0:11 1:00 1:01 1:10
+	// len=3 num=2 i=5
+	public static String getString(int len, int num, long i, int[][] nums)
 	{
-		if (n == 0) return "";
-		if (num[n - 1][l] < i)
+		if (len == 0) return "";
+		if (nums[len - 1][num] < i)
 		{
-			return "1" + getString(n - 1, l - 1, i - num[n - 1][l], num);
+			return "1" + getString(len - 1, num - 1, i - nums[len - 1][num], nums);
 		}
 		else
 		{
-			return "0" + getString(n - 1, l, i, num);
+			return "0" + getString(len - 1, num, i, nums);
 		}
 	}
 }
